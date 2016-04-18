@@ -1,0 +1,8 @@
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\bin\Debug\UnitTestProject.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\bin\Debug\UnitTestProject.pdb
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\bin\Debug\ClassLibrary1.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\bin\Debug\ClassLibrary1.pdb
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\obj\Debug\UnitTestProject.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\UnitTestProject\obj\Debug\UnitTestProject.pdb

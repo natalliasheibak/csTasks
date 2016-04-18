@@ -1,0 +1,10 @@
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\nunit.framework.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\WebDriver.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\nunit.framework.xml
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\bin\Debug\WebDriver.xml
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+c:\users\natallia_sheibak@epam.com\documents\visual studio 2015\Projects\FirstSolution\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
