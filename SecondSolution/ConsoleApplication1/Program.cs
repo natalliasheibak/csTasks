@@ -1,23 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
-namespace task1
+namespace ConsoleApplication1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input a path to the file you want to read");
-            string path=Console.ReadLine();
-            string text = File.ReadAllText(path);
-            text = text.ToLower();
-            text = String.Format("{0: dd.MM.yyyy HH:mm:ss.fff} ", DateTime.Now)+text.Replace(".", String.Format(".\n{0: dd.MM.yyyy HH:mm:ss.fff} ", DateTime.Now));
-            Console.WriteLine(text);
-            Console.ReadLine();
+            string line;
+            string doubleNumber=String.Empty;
+            string intNumber=String.Empty;
+            int doubleCount=0;
+            double doubleSumm=0;
+            int intCount=0;
+            int intSumm = 0;
+            string text=String.Empty;
+
+            Console.WriteLine("Start inputting values. Type \"Stop\" to finish");
+            while (!(line = Console.ReadLine()).Equals("Stop"))
+            {
+                int i;
+                double d;
+                //Обработка целочисленного значения
+                if(Int32.TryParse(line, out i))
+                {
+                    intCount++;
+                    intSumm += i;
+                    intNumber += String.Format("{0,20}\n", i);
+                }
+                //Обработка значения с плавающей точкой
+                else if (Double.TryParse(line, out d))
+                {
+                    doubleCount++;
+                    doubleSumm += d;
+                    doubleNumber += String.Format("{0,20:0.##}\n", d);
+                }
+                //Обработка значений, не являющиеся числами
+                else
+                {
+                    text = text + "\n" + line;
+                }
+            }
+            //Вывод чисел и их среднее арифметическое
+            intNumber += String.Format("Average={0,20:0.##}", (intSumm / intCount));
+            Console.WriteLine(intNumber);
+            doubleNumber += String.Format("Average={0,20:0.##}", (doubleSumm / doubleCount));
+            Console.WriteLine(doubleNumber);
+
+            string buf;
+            string[] lines = text.Split('\n');
+            //Сортировка значений не-чисел
+            if (lines.Length > 0)
+            {
+                for (int i = 1; i < lines.Length-1; i++)
+                {
+                    for (int j = 0; j < (lines.Length - i); j++)
+                    {
+                        if (lines[j].Length > lines[j + 1].Length)
+                        {
+                            buf = lines[j];
+                            lines[j] = lines[j + 1];
+                            lines[j + 1] = buf;
+                        }
+
+                        else if (lines[j].Length > lines[j + 1].Length)
+                        {
+                            if (String.Compare(lines[j], lines[j + 1]) > 0)
+                            {
+                                buf = lines[j];
+                                lines[j] = lines[j + 1];
+                                lines[j + 1] = buf;
+                            }
+                        }
+                    }
+                }
+                //Вывод значений, не являющихся числами
+                foreach (string l in lines)
+                {
+                    Console.WriteLine(l);
+                }
+                Console.ReadLine();
+            }
         }
     }
 }
