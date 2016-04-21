@@ -25,7 +25,7 @@ namespace task4console
                 {
                     for (int j = 0; j < multiMatrix.GetLength(1); j++)
                     {
-                        Console.Write(multiMatrix[i, j] + " ");
+                        Console.Write(String.Format("{0:0.##} ",multiMatrix[i, j]));
                     }
                     Console.WriteLine();
                 }
