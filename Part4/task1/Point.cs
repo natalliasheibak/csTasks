@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace task1
 {
@@ -38,13 +39,24 @@ namespace task1
             Point externalPoint = obj as Point;
             if (externalPoint != null)
             {
-                bool result = (this._x == externalPoint._x || this._y == externalPoint._y) ? true : false;
+                bool result = (this._x == externalPoint._x && this._y == externalPoint._y) ? true : false;
                 return result;
             }
             else
             {
                 return false;
             }
+        }
+    }
+
+    [TestClass]
+    public class MyTestClass
+    {
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            Point point = new Point(1, 2);
+            Point point2 = new Point(2, 2);
         }
     }
 }

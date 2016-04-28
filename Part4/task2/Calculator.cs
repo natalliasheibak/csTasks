@@ -10,8 +10,8 @@ namespace task2
     {
         public static int Fibonacci(int number)
         {
-            int fibSentence=0;
-            if (number == 2||number==1)
+            int fibSentence = 0;
+            if (number == 2 || number == 1)
             {
                 return 1;
             }
@@ -29,9 +29,9 @@ namespace task2
             {
                 return number;
             }
-            else if(number>1)
+            else if (number > 1)
             {
-                multNumber=number*Calculator.Factorial(number - 1);
+                multNumber = number * Calculator.Factorial(number - 1);
             }
             return multNumber;
         }

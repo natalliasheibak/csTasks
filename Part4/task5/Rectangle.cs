@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace task5
 {
@@ -13,10 +14,10 @@ namespace task5
 
         public Rectangle(double height, double width)
         {
-            if (height <= 0 || width <= 0)
-            {
-                throw new ArithmeticException("The sides of the rectangle cannot be equal or less than zero");
-            }
+            //if (height <= 0 || width <= 0)
+            //{
+            //    throw new ArithmeticException("The sides of the rectangle cannot be equal or less than zero");
+            //}
             this.Height = height;
             this.Width = width;
         }
@@ -29,8 +30,13 @@ namespace task5
             }
             else
             {
-                int number1 = (int)(this.Height / rectangle2.Height) * (int)(this.Width / rectangle2.Width);
-                int number2 = (int)(this.Height / rectangle2.Width) * (int)(this.Width / rectangle2.Height);
+                int number = (int)(this.Height / rectangle2.Height) * (int)(this.Width / rectangle2.Width);
+                Rectangle leftRectangle = new Rectangle(this.Height-((int)(this.Height / rectangle2.Height) * rectangle2.Height), this.Width-((int)(this.Width / rectangle2.Width) * rectangle2.Width));
+                int number1 = number + leftRectangle.ContainsOf(rectangle2);
+
+                number = (int)(this.Height / rectangle2.Width) * (int)(this.Width / rectangle2.Height);
+                Rectangle leftRectangle2 = new Rectangle(this.Height-((int)(this.Height / rectangle2.Width)) * rectangle2.Width, this.Width-((int)(this.Width / rectangle2.Height) * rectangle2.Height));
+                int number2 = number + leftRectangle2.ContainsOf(rectangle2);
                 if (number1 >= number2)
                 {
                     return number1;

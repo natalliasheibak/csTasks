@@ -61,7 +61,7 @@ namespace task5 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7.
+        ///   Looks up a localized string similar to 4.
         /// </summary>
         internal static string height1 {
             get {
@@ -70,7 +70,7 @@ namespace task5 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.5.
+        ///   Looks up a localized string similar to 1.
         /// </summary>
         internal static string height2 {
             get {
@@ -79,7 +79,7 @@ namespace task5 {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9.
+        ///   Looks up a localized string similar to 4.
         /// </summary>
         internal static string width1 {
             get {

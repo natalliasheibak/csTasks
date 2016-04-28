@@ -9,7 +9,16 @@ namespace task4
     class ShoppingCart
     {
         private List<Product> listOfProducts;
-        public double TotalPrice { get; private set; }
+        public double TotalPrice {
+            get
+            {
+
+            }
+            private set
+            {
+
+            }
+        }
 
         public ShoppingCart()
         {
