@@ -13,7 +13,7 @@ namespace task3
         public static void Main()
         {
             LinqToXML linq = new LinqToXML();
-            List<string> list=linq.Linq006();
+            List<string> list=linq.Linq009();
             foreach (var l in list)
                 Console.WriteLine(l);
             Console.ReadLine();

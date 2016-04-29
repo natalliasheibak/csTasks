@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SampleSupport;
 using SampleQueries;
 using System.IO;
 
@@ -22,18 +21,7 @@ namespace SampleQueries
 		[STAThread]
 		static void Main(string[] args)
 		{
-			List<SampleHarness> harnesses = new List<SampleHarness>();
 
-			
-			LinqSamples linqHarness = new LinqSamples();
-			harnesses.Add(linqHarness);
-						
-			Application.EnableVisualStyles();
-				
-			using (SampleForm form = new SampleForm("HomeWork - Mihail Romanov", harnesses))
-			{
-				form.ShowDialog();
-			}
 		}
 	}
 }
