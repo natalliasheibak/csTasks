@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<page>
+  <elements>
+    <button name="button 1">ok</button>
+    <textfield name="textfield 1">first name</textfield>
+    <textfield name="textfield 2">family name</textfield>
+    <checkbox name="checkbox 1">children</checkbox>
+    <radiobutton name="radiobutton1">sex</radiobutton>
+    <textarea name="textarea 1">additional information</textarea>
+    <button name="button 3">save</button>
+    <button name="button 2">reset</button>
+    <button name="button 4">back</button>
+  </elements>
+</page>
