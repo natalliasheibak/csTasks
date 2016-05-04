@@ -19,7 +19,7 @@ namespace task1
                 XDocument buttonState = XDocument.Load(Environment.CurrentDirectory + @"\Data\ButtonState.xml");
 
                 var buttons = (from button in pageData.Element("page").Element("elements").Elements("button")
-                               select button.Attribute("name").Value).ToList();     //список всех кнопок из файла PageData.xml
+                               select button).ToList();     //список всех кнопок из файла PageData.xml
                 var buttonsWithStatus = buttonState.Element("buttonstate").Element("buttons").Elements("button").ToList();      //список всех кнопок из ButtonState.xml
 
                 foreach (var button in buttons)
@@ -27,10 +27,10 @@ namespace task1
                     try
                     {
                         //если в файле со статусом есть данная кнопка
-                        if (buttonsWithStatus.Any(buttonName => buttonName.Attribute("name").Value == button))
+                        if (buttonsWithStatus.Any(buttonName => buttonName.Attribute("name").Value == button.Attribute("name").Value))
                         {
-                            page.buttons.Add(button, new Button(button, bool.Parse(buttonsWithStatus
-                                                                                .Where(buttonStatus => buttonStatus.Attribute("name").Value == button)
+                            page.buttons.Add(button.Attribute("name").Value, new Button(button.Attribute("name").Value, bool.Parse(buttonsWithStatus
+                                                                                .Where(buttonStatus => buttonStatus.Attribute("name").Value == button.Attribute("name").Value)
                                                                                 .Select(buttonStatus => buttonStatus.Value).Single())));    //создать ее на странице
                         }
                         //если нету, то бросить исключение
@@ -43,13 +43,13 @@ namespace task1
                     //если в файле с статусом больше, чем одна кнопка обладает таким именем
                     catch(InvalidOperationException e)
                     {
-                        Console.WriteLine($"The element {button} has more than one status");
+                        Console.WriteLine($"The element {button.Attribute("name").Value} has more than one status");
                         continue;
                     }
                     //если в статусе некорректное значение или статуса вообще нет
                     catch (FormatException e)
                     {
-                        Console.WriteLine($"Incorrect status for the element {button} or the status is absent. The button wasn't added to the page ");
+                        Console.WriteLine($"Incorrect status for the element {button.Attribute("name").Value} or the status is absent. The button wasn't added to the page ");
                         continue;
                     }
                 }

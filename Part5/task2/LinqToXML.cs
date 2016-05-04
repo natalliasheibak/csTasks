@@ -19,69 +19,69 @@ namespace Task
 
         public List<string> Linq001(decimal number)
         {
-            var customers = (from c in doc.Element("customers").Elements("customer")
-                        where c.Element("orders")
+            var customers = (from customer in doc.Element("customers").Elements("customer")
+                        where customer.Element("orders")
                                 .Elements("order")
                                 .Count() > 0                                            //Выбрать всех клиентов, у которых есть заказы
-                        && c.Element("orders")
+                        && customer.Element("orders")
                             .Elements("order")
-                            .Sum(o => decimal.Parse(o.Element("total").Value)) > number //И общая сумма заказов больше, чем заданное число
-                        select c.Element("id").Value).ToList();
+                            .Sum(order => decimal.Parse(order.Element("total").Value)) > number //И общая сумма заказов больше, чем заданное число
+                        select customer.Element("id").Value).ToList();
 
             return customers;
         }
 
         public Dictionary<string, List<string>> Linq002()
         {
-            var customersByCountry = (from c in doc.Element("customers")
+            var customersByCountry = (from customer in doc.Element("customers")
                                                 .Elements("customer")
-                                        group c.Element("id").Value by c.Element("country").Value) //Группировка по стране
-                                        .ToDictionary(o => o.Key, o => o.ToList());                //Запись элементов в Dictionary с ключом - страной и элементом - списком всех клиентов в стране
+                                        group customer.Element("id").Value by customer.Element("country").Value) //Группировка по стране
+                                        .ToDictionary(country => country.Key, customerCountry => customerCountry.ToList());                //Запись элементов в Dictionary с ключом - страной и элементом - списком всех клиентов в стране
             return customersByCountry;
         }
 
         public List<string> Linq003(decimal number)
         {
-            var customers = (from c in doc.Element("customers")
+            var customers = (from customer in doc.Element("customers")
                                         .Elements("customer")   
-                            from o in c.Element("orders")       
+                            from order in customer.Element("orders")       
                                         .Elements("order")
-                            where decimal.Parse(o.Element("total").Value) > number
-                            select c.Element("id").Value).ToList();
+                            where decimal.Parse(order.Element("total").Value) > number
+                            select customer.Element("id").Value).ToList();
             return customers;
         }
 
         public List<string> Linq004()
         {
-            var customers = (from c in doc.Element("customers")
+            var customers = (from customer in doc.Element("customers")
                                           .Elements("customer")
-                             where c.Element("orders")
+                             where customer.Element("orders")
                                     .Elements("order").Any()                                                //Выбрать клиентов, у которых есть хотя бы один заказ
-                             let startOrderDate = c.Element("orders")
+                             let startOrderDate = customer.Element("orders")
                                                   .Elements("order")
-                                                  .Min(o => Convert.ToDateTime(o.Element("orderdate").Value))//Создать переменную с датой самого первого заказа
-                             select c.Element("id").Value+$" {startOrderDate:MM.yyyy}").ToList();
+                                                  .Min(order => Convert.ToDateTime(order.Element("orderdate").Value))//Создать переменную с датой самого первого заказа
+                             select customer.Element("id").Value+$" {startOrderDate:MM.yyyy}").ToList();
 
             return customers;
         }
 
         public List<string> Linq005()
         {
-            var customers = (from c in doc.Element("customers")
+            var customers = (from customer in doc.Element("customers")
                                           .Elements("customer")
-                             where c.Element("orders")
+                             where customer.Element("orders")
                                     .Elements("order").Any()
-                             let startOrderDate = c.Element("orders")
+                             let startOrderDate = customer.Element("orders")
                                                   .Elements("order")
-                                                  .Min(o => Convert.ToDateTime(o.Element("orderdate").Value))
-                             let totalSumOfOrders = c.Element("orders")
+                                                  .Min(order => Convert.ToDateTime(order.Element("orderdate").Value))
+                             let totalSumOfOrders = customer.Element("orders")
                                                     .Elements("order")
-                                                    .Sum(o => decimal.Parse(o.Element("total").Value))      //Переменная с суммой всех заказов клиента
+                                                    .Sum(order => decimal.Parse(order.Element("total").Value))      //Переменная с суммой всех заказов клиента
                              orderby startOrderDate.Year,       
                                      startOrderDate.Month,
                                      totalSumOfOrders descending,
-                                     c.Element("id")
-                             select c.Element("id").Value + $" {startOrderDate:MM.yyyy} total:{totalSumOfOrders} ").ToList();
+                                     customer.Element("id")
+                             select customer.Element("id").Value + $" {startOrderDate:MM.yyyy} total:{totalSumOfOrders} ").ToList();
             return customers;
 
         }
@@ -89,13 +89,13 @@ namespace Task
         public List<string> Linq006()
         {
             string pattern = @"^[0-9-]+$";      //Шаблон строки только с числами и знаком тире
-            var customers = (from c in doc.Element("customers")
+            var customers = (from customer in doc.Element("customers")
                                             .Elements("customer")
-                             where (c.Elements("postalcode").Any()
-                                    && !Regex.IsMatch(c.Element("postalcode").Value, pattern))      //если код не соответствует шаблону
-                                    || !c.Elements("region").Any()                                  //или отсутствует регион
-                                    || !c.Element("phone").Value.StartsWith("(")                    //или телефон без кода
-                             select c.Element("id").Value).ToList();
+                             where (customer.Elements("postalcode").Any()
+                                    && !Regex.IsMatch(customer.Element("postalcode").Value, pattern))      //если код не соответствует шаблону
+                                    || !customer.Elements("region").Any()                                  //или отсутствует регион
+                                    || !customer.Element("phone").Value.StartsWith("(")                    //или телефон без кода
+                             select customer.Element("id").Value).ToList();
 
             return customers;
         }
@@ -103,32 +103,32 @@ namespace Task
         public List<string> Linq007()
         {
 
-            var profitability = (from c in doc.Element("customers").Elements("customer")
-                                 group c by c.Element("city").Value     //группировка по городу
+            var profitability = (from customer in doc.Element("customers").Elements("customer")
+                                 group customer by customer.Element("city").Value     //группировка по городу
             into cities
-                                 from c in cities
+                                 from city in cities
                                  select new
                                  {
                                      city = cities.Key,
-                                     intensity = cities.Average(o => o.Element("orders")
+                                     intensity = cities.Average(order => order.Element("orders")
                                                                 .Elements("order")
                                                                 .Count()),          //подсчет интенсивности
-                                     profitability = cities.Sum(o => (o.Element("orders")
+                                     profitability = cities.Sum(order => (order.Element("orders")
                                                                         .Elements("order")
-                                                                        .Sum(s => decimal.Parse(s.Element("total").Value))))    
-                                                    /cities.Sum(o=> (o.Element("orders").Elements("order").Count()))        //подсчет прибыльности
+                                                                        .Sum(sum => decimal.Parse(sum.Element("total").Value))))    
+                                                    /cities.Sum(order=> (order.Element("orders").Elements("order").Count()))        //подсчет прибыльности
                                  })
-                                 .Select(c=>$"{c.city}: profitability: {c.profitability:0.##}, intensity: {c.intensity:0.##}").ToList();
+                                 .Select(city=>$"{city.city}: profitability: {city.profitability:0.##}, intensity: {city.intensity:0.##}").ToList();
             return profitability;
         }
 
         public Dictionary<string,int> Linq008a()
         {
-            var orders = (from c in doc.Element("customers").Elements("customer")
-                          from o in c.Element("orders").Elements("order")
-                          select o).ToList();           //полный список заказов
-            var statisticByMonth = (from o in orders
-                                    group o by Convert.ToDateTime(o.Element("orderdate").Value).Month)      //группировка по месяцу
+            var orders = (from customer in doc.Element("customers").Elements("customer")
+                          from order in customer.Element("orders").Elements("order")
+                          select order).ToList();           //полный список заказов
+            var statisticByMonth = (from order in orders
+                                    group order by Convert.ToDateTime(order.Element("orderdate").Value).Month)      //группировка по месяцу
                                                .OrderBy(c=>c.Key)                                           //сортировка
                                                .ToDictionary(c => CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(c.Key), s => s.Count());   //сохранить в Dictionary с ключом - месяц и значением - количество заказов
             return statisticByMonth;
@@ -136,11 +136,11 @@ namespace Task
 
         public Dictionary<int, int> Linq008b()
         {
-            var orders = (from c in doc.Element("customers").Elements("customer")
-                          from o in c.Element("orders").Elements("order")
-                          select o).ToList();
-            var statisticsByYear = (from o in orders
-                                    group o by Convert.ToDateTime(o.Element("orderdate").Value).Year)
+            var orders = (from customer in doc.Element("customers").Elements("customer")
+                          from order in customer.Element("orders").Elements("order")
+                          select order).ToList();
+            var statisticsByYear = (from order in orders
+                                    group order by Convert.ToDateTime(order.Element("orderdate").Value).Year)
                                                 .OrderBy(c => c.Key)
                                                 .ToDictionary(c => c.Key, s => s.Count());
             return statisticsByYear;
@@ -148,14 +148,14 @@ namespace Task
 
         public Dictionary<string, int> Linq008c()
         {
-            var orders = (from c in doc.Element("customers").Elements("customer")
-                          from o in c.Element("orders").Elements("order")
-                          select o).ToList();
-            var statisticsByMonthAndYear = (from o in orders
-                                            group o by new      //группировка сначала по году, а потом по месяцу
+            var orders = (from customer in doc.Element("customers").Elements("customer")
+                          from order in customer.Element("orders").Elements("order")
+                          select order).ToList();
+            var statisticsByMonthAndYear = (from order in orders
+                                            group order by new      //группировка сначала по году, а потом по месяцу
                                             {
-                                                year = Convert.ToDateTime(o.Element("orderdate").Value).Year,
-                                                month = Convert.ToDateTime(o.Element("orderdate").Value).Month
+                                                year = Convert.ToDateTime(order.Element("orderdate").Value).Year,
+                                                month = Convert.ToDateTime(order.Element("orderdate").Value).Month
                                             })
                                             .OrderBy(c => c.Key.year).ThenBy(c => c.Key.month)      //сортировка сначала по году, а потом по месяцу
                                             .ToDictionary(c => $"{CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(c.Key.month):MMM} {c.Key.year}", s => s.Count());      //Dictionary ключ - месяц и год, значение - количество заказов
