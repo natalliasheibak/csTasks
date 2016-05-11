@@ -46,7 +46,6 @@
     <Compile Include="Receiver\DigitSumCalculator.cs" />
     <Compile Include="Commands\DigitSumCommand.cs" />
     <Compile Include="Commands\DistanceCommand.cs" />
-    <Compile Include="Executioner.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\PrimaryNumberCommand.cs" />
     <Compile Include="Receiver\PrimeNumberDetector.cs" />
