@@ -47,7 +47,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChromeFactory.cs" />
     <Compile Include="DriverFactory.cs" />
+    <Compile Include="FirefoxFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\Test.cs" />
   </ItemGroup>

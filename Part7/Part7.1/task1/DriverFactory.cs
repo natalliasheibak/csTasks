@@ -21,15 +21,19 @@ namespace task1
         }
         public static IWebDriver InitWebDriver()
         {
-            switch (ConfigurationManager.AppSettings["browser"])
+            if (_driver == null)
             {
-                case "firefox":
-                    return new FirefoxDriver();
-                case "chrome":
-                    return new ChromeDriver();
-                default:
-                    return new FirefoxDriver();
+                switch (ConfigurationManager.AppSettings["browser"])
+                {
+                    case "firefox":
+                        return FirefoxFactory.GetDriver();
+                    case "chrome":
+                        return ChromeFactory.GetDriver();
+                    default:
+                        return FirefoxFactory.GetDriver();
+                }
             }
+            return _driver;
         }
     }
 
