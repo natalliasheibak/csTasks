@@ -36,17 +36,4 @@ namespace task1
             return _driver;
         }
     }
-
-    //[Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
-    //public class MyTestClass
-    //{
-    //    [TestMethod]
-    //    public void MyTestMethod()
-    //    {
-    //        using (var driver = DriverFactory.GetDriver())
-    //        {
-    //            driver.Navigate().GoToUrl("google.com");
-    //        }
-    //    }
-    //}
 }

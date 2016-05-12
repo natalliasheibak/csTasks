@@ -13,7 +13,7 @@ namespace task1.Test
     public class Test
     {
         [TestMethod]
-        public void MyTestMethod1()
+        public void TestDriverFactory()
         {
             using(var driver = DriverFactory.GetDriver())
             {
@@ -22,7 +22,7 @@ namespace task1.Test
         }
 
         [TestMethod]
-        public void MyTestMethod2()
+        public void TestFirefoxFactory()
         {
             using (var driver = FirefoxFactory.GetDriver())
             {
@@ -31,7 +31,7 @@ namespace task1.Test
         }
 
         [TestMethod]
-        public void MyTestMethod3()
+        public void TestChromeFactory()
         {
             using (var driver = ChromeFactory.GetDriver())
             {
