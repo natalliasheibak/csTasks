@@ -5,13 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:task1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="615" Width="600">
-    <Grid>
-        <Button x:Name="btFilePath" Content="Browser" HorizontalAlignment="Left" Margin="468,15,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <TextBox x:Name="tbFilePath" HorizontalAlignment="Left" Height="23" Margin="27,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" IsReadOnly="True"/>
-        <ListBox x:Name="lbFiles" HorizontalAlignment="Left" Height="487" Margin="27,73,0,0" VerticalAlignment="Top" Width="165" RenderTransformOrigin="0.027,-0.836" SelectionChanged="lbFiles_SelectionChanged"/>
-        <ListBox x:Name="lbClasses" HorizontalAlignment="Left" Height="487" Margin="215,73,0,0" VerticalAlignment="Top" Width="165" RenderTransformOrigin="0.027,-0.836"/>
-        <ListBox x:Name="lbClassContent" HorizontalAlignment="Left" Height="487" Margin="401,73,0,0" VerticalAlignment="Top" Width="165" RenderTransformOrigin="0.027,-0.836"/>
-
+        Title="MainWindow" Height="715" Width="600" ResizeMode="NoResize">
+    <Grid Margin="-10,0,0,7" RenderTransformOrigin="0.5,0.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.008"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="614*"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btFilePath" Content="Browser" HorizontalAlignment="Left" Margin="479,2,0,0" VerticalAlignment="Top" Width="75" Click="button_Click" Height="22" Grid.Row="1"/>
+        <TextBox x:Name="tbFilePath" HorizontalAlignment="Left" Height="23" Margin="98,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="357" IsReadOnly="True" Grid.Row="1"/>
+        <ListBox x:Name="lbFiles" HorizontalAlignment="Left" Height="487" Margin="35,105,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.027,-0.836" SelectionChanged="lbFiles_SelectionChanged" Grid.Row="1"/>
+        <ListBox x:Name="lbTypes" HorizontalAlignment="Left" Height="487" Margin="223,105,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.027,-0.836" SelectionChanged="lbTypes_SelectionChanged" Grid.Row="1"/>
+        <ListBox x:Name="lbTypeContent" HorizontalAlignment="Left" Height="487" Margin="409,105,0,0" VerticalAlignment="Top" Width="164" RenderTransformOrigin="0.027,-0.836" Grid.Row="1"/>
+        <Label x:Name="lblFilePath" Content="File path:" HorizontalAlignment="Left" Height="33" Margin="30,0,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.509,0.171" Grid.Row="1"/>
+        <Label x:Name="lblFiles" Content="Files:" HorizontalAlignment="Left" Height="27" Margin="37,78,0,0" VerticalAlignment="Top" Width="52" RenderTransformOrigin="0.519,-0.471" Grid.Row="1"/>
+        <Label x:Name="lblTypes" Content="Types:" HorizontalAlignment="Left" Height="27" Margin="223,78,0,0" VerticalAlignment="Top" Width="46" Grid.Row="1"/>
+        <Label x:Name="lblContent" Content="Type Content:" HorizontalAlignment="Left" Height="27" Margin="409,78,0,0" VerticalAlignment="Top" Width="96" Grid.Row="1"/>
+        <ComboBox x:Name="cmbContent" HorizontalAlignment="Left" Margin="459,51,0,0" VerticalAlignment="Top" Width="114" RenderTransformOrigin="1.6,0.545" Height="22" Grid.Row="1" SelectionChanged="cmbContent_SelectionChanged">
+            <ComboBoxItem Content="All" IsSelected="True"/>
+            <ComboBoxItem Content="Fields"/>
+            <ComboBoxItem Content="Methods"/>
+            <ComboBoxItem Content="Properties"/>
+        </ComboBox>
+        <Label x:Name="lblComboType" Content="Show Content" HorizontalAlignment="Left" Height="27" Margin="348,51,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.562,0.038"/>
+        <Button x:Name="btClose" Content="Close" HorizontalAlignment="Left" Margin="459,612,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.706,-0.408" Click="btClose_Click"/>
     </Grid>
 </Window>

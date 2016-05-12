@@ -31,32 +31,108 @@ namespace task1
         private void button_Click(object sender, RoutedEventArgs e)
         {
             lbFiles.Items.Clear();
-            lbClasses.Items.Clear();
-            lbClassContent.Items.Clear();
+            lbTypes.Items.Clear();
+            lbTypeContent.Items.Clear();
             FolderBrowserDialog browserDialog = new FolderBrowserDialog();
             if (browserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 tbFilePath.Text = browserDialog.SelectedPath;
-            }
-            DirectoryInfo directory = new DirectoryInfo(browserDialog.SelectedPath);
-            List<FileInfo> files = directory.GetFiles("*.dll").ToList();
-            foreach (var file in files)
-            {
-                lbFiles.Items.Add(file);
+                DirectoryInfo directory = new DirectoryInfo(browserDialog.SelectedPath);
+                List<FileInfo> files = directory.GetFiles("*.dll").ToList();
+                foreach (var file in files)
+                {
+                    lbFiles.Items.Add(file);
+                }
             }
         }
 
         private void lbFiles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lbClasses.Items.Clear();
-            lbClassContent.Items.Clear();
+            lbTypes.Items.Clear();
+            lbTypeContent.Items.Clear();
             var file = lbFiles.SelectedItem as FileInfo;
-            Assembly fileAssembly = Assembly.LoadFile(@"C:\Users\Natallia_Sheibak@epam.com\Desktop\net35\WebDriver.dll");
-            var content = fileAssembly.GetTypes();
-            foreach(var item in content)
+            if (file != null)
             {
-                lbClasses.Items.Add(item);
+                try
+                {
+                    Assembly fileAssembly = Assembly.LoadFile(file.FullName);
+                    var content = fileAssembly.GetTypes();
+                    foreach (var item in content)
+                    {
+                        lbTypes.Items.Add(item);
+                    }
+                    lbTypes.DisplayMemberPath = "Name";
+                }
+                catch (ReflectionTypeLoadException error)
+                {
+                    System.Windows.MessageBox.Show("Some error with loading the current file ocurred.", "Error message", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
+        }
+
+        private void lbTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lbTypeContent.Items.Clear();
+            var type = lbTypes.SelectedItem as Type;
+            if (type != null)
+            {
+                MemberInfo[] items = null;
+                switch (cmbContent.SelectedIndex)
+                {
+                    case 0:
+                        items = type.GetMembers();
+                        break;
+                    case 1:
+                        items = type.GetFields();
+                        break;
+                    case 2:
+                        items = type.GetMethods();
+                        break;
+                    case 3:
+                        items = type.GetProperties();
+                        break;
+                }
+                foreach (var item in items)
+                {
+                    lbTypeContent.Items.Add(item);
+                }
+                lbTypeContent.DisplayMemberPath = "Name";
+            }
+        }
+
+        private void cmbContent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lbTypeContent.Items.Clear();
+            var type = lbTypes.SelectedItem as Type;
+            if (type != null)
+            {
+                MemberInfo[] items = null;
+                switch (cmbContent.SelectedIndex)
+                {
+                    case 0:
+                        items = type.GetMembers();
+                        break;
+                    case 1:
+                        items = type.GetFields();
+                        break;
+                    case 2:
+                        items = type.GetMethods();
+                        break;
+                    case 3:
+                        items = type.GetProperties();
+                        break;
+                }
+                foreach (var item in items)
+                {
+                    lbTypeContent.Items.Add(item);
+                }
+                lbTypeContent.DisplayMemberPath = "Name";
+            }
+        }
+
+        private void btClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
