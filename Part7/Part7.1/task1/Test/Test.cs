@@ -15,7 +15,7 @@ namespace task1.Test
         [TestMethod]
         public void TestDriverFactory()
         {
-            using(var driver = DriverFactory.GetDriver())
+            using(var driver = WebDriver.GetDriver())
             {
                 driver.Navigate().GoToUrl("google.com");
             }
@@ -24,7 +24,7 @@ namespace task1.Test
         [TestMethod]
         public void TestFirefoxFactory()
         {
-            using (var driver = FirefoxFactory.GetDriver())
+            using (var driver = FirefoxSingleton.GetDriver())
             {
                 driver.Navigate().GoToUrl("google.com");
             }
@@ -33,7 +33,7 @@ namespace task1.Test
         [TestMethod]
         public void TestChromeFactory()
         {
-            using (var driver = ChromeFactory.GetDriver())
+            using (var driver = ChromeSingleton.GetDriver())
             {
                 driver.Navigate().GoToUrl("google.com");
             }

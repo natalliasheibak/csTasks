@@ -14,26 +14,17 @@ namespace task1
     public class DriverFactory
     {
         private DriverFactory() { }
-        private static IWebDriver _driver = InitWebDriver();
-        public static IWebDriver GetDriver()
+        public static IWebDriver Create(string browser)
         {
-            return _driver;
-        }
-        public static IWebDriver InitWebDriver()
-        {
-            if (_driver == null)
+            switch (browser)
             {
-                switch (ConfigurationManager.AppSettings["browser"])
-                {
-                    case "firefox":
-                        return FirefoxFactory.GetDriver();
-                    case "chrome":
-                        return ChromeFactory.GetDriver();
-                    default:
-                        return FirefoxFactory.GetDriver();
-                }
+                case "firefox":
+                    return FirefoxSingleton.GetDriver();
+                case "chrome":
+                    return ChromeSingleton.GetDriver();
+                default:
+                    return FirefoxSingleton.GetDriver();
             }
-            return _driver;
         }
     }
 }
