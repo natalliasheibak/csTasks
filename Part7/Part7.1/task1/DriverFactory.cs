@@ -37,16 +37,16 @@ namespace task1
         }
     }
 
-    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
-    public class MyTestClass
-    {
-        [TestMethod]
-        public void MyTestMethod()
-        {
-            using (var driver = DriverFactory.GetDriver())
-            {
-                driver.Navigate().GoToUrl("google.com");
-            }
-        }
-    }
+    //[Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
+    //public class MyTestClass
+    //{
+    //    [TestMethod]
+    //    public void MyTestMethod()
+    //    {
+    //        using (var driver = DriverFactory.GetDriver())
+    //        {
+    //            driver.Navigate().GoToUrl("google.com");
+    //        }
+    //    }
+    //}
 }
