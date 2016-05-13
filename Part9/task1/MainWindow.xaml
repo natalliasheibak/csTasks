@@ -20,8 +20,8 @@
             </TransformGroup>
         </Grid.RenderTransform>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="614*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="83*"/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Button x:Name="btFilePath" Content="Browser" HorizontalAlignment="Left" Margin="479,2,0,0" VerticalAlignment="Top" Width="75" Click="button_Click" Height="22" Grid.Row="1"/>
@@ -39,7 +39,7 @@
             <ComboBoxItem Content="Methods"/>
             <ComboBoxItem Content="Properties"/>
         </ComboBox>
-        <Label x:Name="lblComboType" Content="Show Content" HorizontalAlignment="Left" Height="27" Margin="348,51,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.562,0.038"/>
-        <Button x:Name="btClose" Content="Close" HorizontalAlignment="Left" Margin="459,612,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.706,-0.408" Click="btClose_Click"/>
+        <Label x:Name="lblComboType" Content="Show Content:" HorizontalAlignment="Left" Height="27" Margin="348,51,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.562,0.038"/>
+        <Button x:Name="btClose" Content="Close" HorizontalAlignment="Left" Margin="459,612,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.706,-0.408" Click="btClose_Click" Height="22"/>
     </Grid>
 </Window>

@@ -72,67 +72,50 @@ namespace task1
 
         private void lbTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lbTypeContent.Items.Clear();
-            var type = lbTypes.SelectedItem as Type;
-            if (type != null)
-            {
-                MemberInfo[] items = null;
-                switch (cmbContent.SelectedIndex)
-                {
-                    case 0:
-                        items = type.GetMembers();
-                        break;
-                    case 1:
-                        items = type.GetFields();
-                        break;
-                    case 2:
-                        items = type.GetMethods();
-                        break;
-                    case 3:
-                        items = type.GetProperties();
-                        break;
-                }
-                foreach (var item in items)
-                {
-                    lbTypeContent.Items.Add(item);
-                }
-                lbTypeContent.DisplayMemberPath = "Name";
-            }
+            FillListBoxTypeContent();
         }
 
         private void cmbContent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lbTypeContent.Items.Clear();
-            var type = lbTypes.SelectedItem as Type;
-            if (type != null)
+            if (lbTypes.Items.Count > 0)
             {
-                MemberInfo[] items = null;
-                switch (cmbContent.SelectedIndex)
-                {
-                    case 0:
-                        items = type.GetMembers();
-                        break;
-                    case 1:
-                        items = type.GetFields();
-                        break;
-                    case 2:
-                        items = type.GetMethods();
-                        break;
-                    case 3:
-                        items = type.GetProperties();
-                        break;
-                }
-                foreach (var item in items)
-                {
-                    lbTypeContent.Items.Add(item);
-                }
-                lbTypeContent.DisplayMemberPath = "Name";
+                FillListBoxTypeContent();
             }
         }
 
         private void btClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void FillListBoxTypeContent()
+        {
+            lbTypeContent.Items.Clear();
+            var type = lbTypes.SelectedItem as Type;
+            if (type != null)
+            {
+                MemberInfo[] items = null;
+                switch (cmbContent.SelectedIndex)
+                {
+                    case 0:
+                        items = type.GetMembers().Where(t=> (t as EventInfo)==null).Select(t=>t).ToArray();
+                        break;
+                    case 1:
+                        items = type.GetFields();
+                        break;
+                    case 2:
+                        items = type.GetMethods();
+                        break;
+                    case 3:
+                        items = type.GetProperties();
+                        break;
+                }
+                foreach (var item in items)
+                {
+                    lbTypeContent.Items.Add(item);
+                }
+                lbTypeContent.DisplayMemberPath = "Name";
+            }
         }
     }
 }
